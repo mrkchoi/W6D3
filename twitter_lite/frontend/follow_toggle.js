@@ -1,3 +1,5 @@
+let APIUtil = require('./api_util');
+
 class FollowToggle {
   constructor(el){
     this.$el = $(el);
@@ -29,33 +31,40 @@ class FollowToggle {
     }
   }
 
-  handleClick(){
+  setDisabledBtnState() {
+    if (this.followState === "unfollowed") {
+      this.$el.text("following...");
+    } else if (this.followState === "followed") {
+      this.$el.text("unfollowing...");
+    }
+    this.$el.prop("disabled", true);
+  }
+
+  handleClick() {
     console.log(`Before AJAX request => ${this.followState}`);
     let that = this;
+    this.setDisabledBtnState();
+
     if (this.followState === 'followed') {
-      $.ajax({
-        url: `/users/${this.userId}/follow`,
-        type: "DELETE",
-        dataType: "json",
-        success: function(result) {
-          console.log("delete successful");
+      APIUtil.unfollowUser(this.userId)
+        .then((res) => {
+          this.$el.prop("disabled", false);
           that.updateFollowState();
           that.render();
-        }
-      });
+          console.log(`handleClick DELETE result: ${res}`);
+        });
     } else if (this.followState === 'unfollowed') {
-      $.ajax({
-        url: `/users/${this.userId}/follow`,
-        type: "POST",
-        dataType: "json",
-        success: function (result) { 
-          console.log("post successful");
+      APIUtil.followUser(this.userId)
+        .then((res) => {
+          this.$el.prop("disabled", false);
           that.updateFollowState();
           that.render();
-        }
-      });
+          console.log(`handleClick POST result: ${res}`);
+        });
     }
   }
 }
 
 module.exports = FollowToggle;
+
+
