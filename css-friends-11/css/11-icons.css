@@ -5,10 +5,56 @@
   background-size: 25px 250px;
   display: inline-block;
   width: 25px;
-  height: 25px;
+  height: 0;
+  overflow: hidden;
+  padding-top: 25px;
 }
 
-.icon-comment {}
-.icon-reblog {}
-.icon-favorite {}
+[class*="icon-small-"] {
+  width: 20px;
+  display: inline-block;
+
+  padding-top: 20px;
+}
+
+.icon-comment {
+  background-position: 0 0;
+}
+
+.icon-reblog {
+  background-position: 0 -100px;
+}
+
+.icon-favorite {
+  background-position: 0 -50px;
+}
+
+.icon-comment:hover {
+  background-position: 0 -25px;
+}
+
+.icon-reblog:hover {
+  background-position: 0 -125px;
+}
+
+.icon-favorite:hover {
+  background-position: 0 -75px;
+}
+
+.icon-small-wall {
+  background-position: 0 -225px;
+}
+
+.icon-small-about {
+  background-position: 0 -175px;
+}
+
+.icon-small-friends {
+  background-position: 0 -150px;
+}
+
+.icon-small-photos {
+  background-position: 0 -200px;
+}
+
 
