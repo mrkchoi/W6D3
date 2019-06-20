@@ -203,8 +203,6 @@ class FollowToggle {
 module.exports = FollowToggle;
 
 
-
-
 /***/ }),
 
 /***/ "./frontend/twitter.js":

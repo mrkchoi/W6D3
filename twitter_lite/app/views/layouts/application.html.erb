@@ -5,24 +5,25 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body>
-    <ul>
-      <li><a href="<%= feed_url %>">Feed</a></li>
-      <li><a href="<%= search_users_url %>">User Search</a></li>
+  <body class="ui container">
+    <ul class="navbar">
+      <li><a href="<%= feed_url %>" class="ui button">Feed</a></li>
+      <li><a href="<%= search_users_url %>" class="ui button">User Search</a></li>
     </ul>
 
     <% if current_user %>
-      <form action="/session" method="POST">
+      <form action="/session" method="POST" class="ui form">
         <input type="hidden" name="_method" value="DELETE">
         <input
           type="hidden"
           name="authenticity_token"
           value="<%= form_authenticity_token %>">
 
-        <input type="submit" value="Logout!">
+        <input type="submit" value="Logout!" class="ui button">
       </form>
     <% end %>
     
